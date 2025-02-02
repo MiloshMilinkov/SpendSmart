@@ -21,8 +21,8 @@ namespace SpendSmart.Architecture.Repository
         }
         public async Task<Expense> GetExpenseById(int id)
         {
-            var expense = await _spendSmartDbContext.Expenses.FirstOrDefaultAsync(ex => ex.Id == id);
-            return expense;
+            return await _spendSmartDbContext.Expenses.FindAsync(id);
+            
         }
 
         public async Task<List<Expense>> GetAllExpensesAsync()
@@ -32,8 +32,11 @@ namespace SpendSmart.Architecture.Repository
         public async Task DeleteExpenseAsync(int id)
         {
             var expense = await GetExpenseById(id);
-            _spendSmartDbContext.Expenses.Remove(expense);
-            await _spendSmartDbContext.SaveChangesAsync();
+            if (expense != null)
+            {
+                _spendSmartDbContext.Expenses.Remove(expense);
+                await _spendSmartDbContext.SaveChangesAsync();
+            }
 
         }
 

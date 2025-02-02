@@ -8,12 +8,25 @@
     <h1 class="display-4">Create or edit an expense</h1>
 </div>
 <form asp-controller="Home" asp-action="AddCreatedExpense">
-    <label>Id</label>
-    <input class="form-control" type="number" placeholder="0" asp-for="Id"/>
-    <label>Value $</label>
-    <input class="form-control mt-4" type="number" placeholder="0" asp-for="Value" step="0.01" />
-    <label>Description</label>
-    <input class="form-control mt-4" type="text" placeholder="Add a description" asp-for="Description" />
+    @Html.HiddenFor(m => m.Id)  <!-- Hidden ID -->
 
-    <button class="btn btn-primary mt-4" type="submit">Add</button>
+    <div class="form-group">
+        <label>Value $</label>
+        <input class="form-control mt-4" type="number" asp-for="Value" step="0.01" required />
+        <span asp-validation-for="Value" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Description</label>
+        <input class="form-control mt-4" type="text" asp-for="Description" required />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <button class="btn btn-primary mt-4" type="submit">Save</button>
 </form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

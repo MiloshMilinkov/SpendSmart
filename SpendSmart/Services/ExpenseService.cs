@@ -16,7 +16,8 @@ namespace SpendSmart.Services
 
         public async Task CreateExpenseAsync(Expense expense)
         {
-            if(expense == null) throw new ArgumentNullException(nameof(expense));
+            ArgumentNullException.ThrowIfNull(expense);
+            if (expense.Value <= 0) throw new ArgumentException("Expense value must be greater than zero.");
             await _expenseRepository.AddExpenseAsync(expense);
         }
         public async Task<List<Expense>> GetAllExpensesAsync()
@@ -26,6 +27,8 @@ namespace SpendSmart.Services
 
         public async Task DeleteExpenseAsync(int id)
         {
+            var existingExpense = await _expenseRepository.GetExpenseById(id) 
+                ?? throw new KeyNotFoundException($"Expense with ID {id} not found.");
             await _expenseRepository.DeleteExpenseAsync(id);
         }
     }

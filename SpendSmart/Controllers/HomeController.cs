@@ -39,12 +39,11 @@ namespace SpendSmart.Controllers
 
         public async Task<ActionResult> AddCreatedExpense(Expense model)
         {
-            if (ModelState.IsValid)
-            {
-                await _expenseService.CreateExpenseAsync(model);
-            }
 
-            return RedirectToAction("Expenses");
+                await _expenseService.CreateExpenseAsync(model);
+                return RedirectToAction("Expenses");
+
+            //return View("CreateEditExpense", model);
         }
         public async Task<ActionResult> DeleteExpense(int id)
         {

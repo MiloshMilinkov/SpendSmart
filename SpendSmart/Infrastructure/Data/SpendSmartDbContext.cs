@@ -7,11 +7,13 @@ namespace SpendSmart.Architecture.Data
     {
         public DbSet<Expense> Expenses { get; set; }
 
-        public SpendSmartDbContext(DbContextOptions<SpendSmartDbContext> options) : base(options)
+        public SpendSmartDbContext(DbContextOptions<SpendSmartDbContext> options) : base(options){}
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<Expense>()
+                .Property(e => e.Id)
+                .ValueGeneratedOnAdd(); // Ensures auto-increment for Id
         }
-
 
     }
 }
