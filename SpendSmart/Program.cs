@@ -1,3 +1,9 @@
+/*
+ * SpendSmart
+ * Copyright (c) 2025-2026 Miloš Milinkov. All rights reserved.
+ * Proprietary and confidential. Use, copying, modification or distribution
+ * without written permission is prohibited. See the LICENSE file.
+ */
 using Microsoft.EntityFrameworkCore;
 using SpendSmart.Architecture.Data;
 using SpendSmart.Architecture.Repository;

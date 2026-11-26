@@ -1,0 +1,10 @@
+<Project>
+  <PropertyGroup>
+    <Product>SpendSmart</Product>
+    <Authors>Miloš Milinkov</Authors>
+    <Company>Miloš Milinkov</Company>
+    <Copyright>Copyright (c) 2025-2026 Miloš Milinkov. All rights reserved.</Copyright>
+    <!-- Proprietary: never packed or published as a package. -->
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+</Project>
